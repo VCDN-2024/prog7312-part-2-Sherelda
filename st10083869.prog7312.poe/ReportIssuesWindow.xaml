@@ -1,0 +1,86 @@
+﻿<Window x:Class="st10083869.prog7312.poe.ReportIssuesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:st10083869.prog7312.poe"
+        mc:Ignorable="d"
+       Title="Report Issues" Height="600" Width="800" 
+       WindowStartupLocation="CenterScreen">
+
+    <!-- Gradient Background -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FF5A9BD4" Offset="0"/>
+            <GradientStop Color="#FF3B5998" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="Report an Issue" FontSize="28" FontWeight="Bold" Foreground="White"
+                   Grid.ColumnSpan="2" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+        <!-- Location Input -->
+        <TextBlock Text="Location:" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+        <TextBox x:Name="txtLocation" Grid.Row="1" Grid.Column="1" Margin="5" Padding="8" 
+                 Background="#FFFFFF" BorderBrush="#CCCCCC" FontSize="14"/>
+
+        <!-- Category ComboBox -->
+        <TextBlock Text="Category:" Grid.Row="2" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+        <ComboBox x:Name="cmbCategory" Grid.Row="2" Grid.Column="1" Margin="5" Padding="8" 
+                  Background="#FFFFFF" BorderBrush="#CCCCCC" FontSize="14">
+            <ComboBoxItem>Sanitation</ComboBoxItem>
+            <ComboBoxItem>Roads</ComboBoxItem>
+            <ComboBoxItem>Utilities</ComboBoxItem>
+            <ComboBoxItem>Other</ComboBoxItem>
+        </ComboBox>
+
+        <!-- Description Input -->
+        <TextBlock Text="Description:" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0" 
+                   FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+        <TextBox x:Name="txtDescription" Grid.Row="3" Grid.Column="1" 
+                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" 
+                 Height="150" Margin="5" Padding="8" 
+                 Background="#FFFFFF" BorderBrush="#CCCCCC" FontSize="14"/>
+
+        <!-- Attach File Button -->
+        <Button x:Name="btnAttach" Content="Attach File" Grid.Row="4" Grid.Column="1" 
+                HorizontalAlignment="Left" Margin="5" Padding="10,5" FontSize="14"
+                Background="#2196F3" Foreground="White" BorderBrush="#1E88E5" 
+                Click="btnAttach_Click" Cursor="Hand"/>
+
+        <!-- Attachment Info -->
+        <TextBlock x:Name="txtAttachmentInfo" Grid.Row="5" Grid.Column="1" Margin="5" 
+                   FontSize="14" FontStyle="Italic" Foreground="#CCCCCC"/>
+
+        <!-- Progress Bar -->
+        <ProgressBar x:Name="progressReporting" Grid.Row="5" Grid.ColumnSpan="2" 
+                     Height="20" Margin="-5,28,5,61" Value="0" Grid.RowSpan="2"/>
+
+        <!-- Buttons at the Bottom -->
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" Margin="0,40,0,0">
+            <Button x:Name="btnSubmit" Content="Submit" Width="100" Margin="5" 
+                    Padding="10,5" FontSize="14" Background="#4CAF50" Foreground="White" 
+                    BorderBrush="#388E3C" Click="btnSubmit_Click" Cursor="Hand"/>
+            <Button x:Name="btnBack" Content="Back to Main Menu" Width="120" Margin="5" 
+                    Padding="10,5" FontSize="14" Background="#FF5722" Foreground="White" 
+                    BorderBrush="#E64A19" Click="btnBack_Click" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Window>

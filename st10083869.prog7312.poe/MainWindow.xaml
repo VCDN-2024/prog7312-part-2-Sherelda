@@ -1,0 +1,82 @@
+﻿<Window x:Class="st10083869.prog7312.poe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:st10083869.prog7312.poe"
+        mc:Ignorable="d"
+       Title="Main Menu" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+
+    <!-- Gradient Background -->
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FF5A9BD4" Offset="0"/>
+                <GradientStop Color="#FF3B5998" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Welcome Label -->
+        <Label Content="Welcome Users" 
+               Grid.Row="0"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="28" 
+               FontWeight="Bold" 
+               Foreground="White"
+               Margin="0,20,0,20"/>
+
+        <!-- Local Events Button -->
+        <Button x:Name="btnLocalEvents" 
+                Content="Local Events and Announcements" 
+                Grid.Row="1"
+                Width="244" 
+                Height="61"
+                Background="#007ACC"
+                Foreground="White"
+                FontSize="14"
+                Click="btnLocalEvents_Click"/>
+
+        <!-- Report Issues Button -->
+        <Button x:Name="btnReportIssues" 
+                Content="Report Issues" 
+                Grid.Row="2"
+                Width="244" 
+                Height="55"
+                Background="#FF9F43"
+                Foreground="White"
+                FontSize="14"
+                Click="btnReportIssues_Click"/>
+
+        <!-- Service Request Status Button -->
+        <Button x:Name="btnServiceRequestStatus" 
+                Content="Service Request Status" 
+                Grid.Row="3"
+                Width="244" 
+                Height="57"
+                Background="#4CAF50"
+                Foreground="White"
+                FontSize="14"
+                Click="btnServiceRequestStatus_Click"/>
+
+        <!-- Provide Feedback Button -->
+        <Button x:Name="btnProvideFeedback" 
+                Content="Provide Feedback" 
+                Grid.Row="4"
+                Width="244" 
+                Height="55"
+                Background="#E91E63"
+                Foreground="White"
+                FontSize="14"
+                Click="btnProvideFeedback_Click"/>
+    </Grid>
+</Window>
