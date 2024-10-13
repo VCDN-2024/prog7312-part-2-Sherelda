@@ -36,7 +36,7 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 ## Installation Instructions
 
 1. Install Visual Studio with .NET Framework support for WPF applications.
-2. Clone or download the project repository.
+2. Clone or download the project repository https://github.com/VCDN-2024/prog7312-part-2-Sherelda/tree/master 
 3. Open the solution file using Visual Studio.
 4. Build the solution to restore NuGet packages and compile the project.
 5. Run the application using F5 or the "Start" button in Visual Studio.
