@@ -21,10 +21,11 @@ namespace st10083869.prog7312.poe
 
 
     public partial class LocalEventsWindow : Window
-    {   //Data structures are implemented to manage the events by history,dates,category 
-       //stores the evnts by the dates 
+    {
+        //Data structures are implemented to manage the events by history,dates,category 
+        //stores the evnts by the dates 
         private SortedDictionary<DateTime, List<Event>> eventsByDate;
-       //Ensures that the events are stored by category
+        //Ensures that the events are stored by category
         private HashSet<string> categories;
         //Allows for storing the history of catory searches 
         private Stack<string> searchHistory;
@@ -32,16 +33,13 @@ namespace st10083869.prog7312.poe
         private Queue<Event> upcomingEvents;
         //Events are priorotized by the dates 
         private PriorityQueue<Event, DateTime> priorityEvents;
-        private const string EventsFilePath = "events.xml";
 
         public LocalEventsWindow()
         {
             InitializeComponent();
             InitializeDataStructures();
-            LoadEvents();
             UpdateUI();
         }
-
         //data structures 
 
         //code attribution :
@@ -50,96 +48,49 @@ namespace st10083869.prog7312.poe
         //Link :https://youtu.be/RBSGKlAvoiM?si=tDMhwiEd8kGfdXmd
         private void InitializeDataStructures()
         {
-            eventsByDate = new SortedDictionary<DateTime, List<Event>>();
-            categories = new HashSet<string>();
-            searchHistory = new Stack<string>();
-            upcomingEvents = new Queue<Event>();
+            // Hard-code SortedDictionary for events by date
+            eventsByDate = new SortedDictionary<DateTime, List<Event>>
+            {
+                { DateTime.Now.AddDays(5).Date, new List<Event> { new Event("Community Movie Night", DateTime.Now.AddDays(5), "Community", "Join us for a movie night, everyone is welcomed!") } },
+                { DateTime.Now.AddDays(10).Date, new List<Event> { new Event("Local Art Expo", DateTime.Now.AddDays(10), "Art", "Join us as local artists are showcasing their art.") } },
+                { DateTime.Now.AddDays(15).Date, new List<Event> { new Event("Charity Run", DateTime.Now.AddDays(15), "Sports", "R10000 run to raise funds for local charities.") } },
+                { DateTime.Now.AddDays(7).Date, new List<Event> { new Event("Halloween party ", DateTime.Now.AddDays(7), "Charity", "everyone has to dress as a character.") } }
+            };
+
+            // Hard-code HashSet for categories
+            categories = new HashSet<string> { "Community", "Art", "Sports", "Charity" };
+
+            // Hard-code Stack for search history
+            searchHistory = new Stack<string>(new[] { "Art", "Community","Sports","charity" });
+
+            // Hard-code Queue for upcoming events
+            upcomingEvents = new Queue<Event>(eventsByDate.Values.SelectMany(list => list).OrderBy(e => e.Date));
+
+            // Hard-code PriorityQueue for priority events
             priorityEvents = new PriorityQueue<Event, DateTime>();
-        }
-
-        private void LoadEvents()
-        {
-            try
+            foreach (var evt in eventsByDate.Values.SelectMany(list => list))
             {
-                if (File.Exists(EventsFilePath))
-                {
-                    using (var reader = new StreamReader(EventsFilePath))
-                    {
-                        XmlSerializer serializer = new XmlSerializer(typeof(List<Event>));
-                        var events = (List<Event>)serializer.Deserialize(reader);
-                        foreach (var evt in events)
-                        {
-                            AddEvent(evt);//Adds each event to the dat struct
-                        }
-                    }
-                }
-                else
-                {
-                    PopulateInitialData();
-                }
+                priorityEvents.Enqueue(evt, evt.Date);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading events: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                PopulateInitialData();//uses the initial infor to populate
-            }
-        }
-
-        private void SaveEvents()
-        {
-            try
-            {
-                var allEvents = eventsByDate.SelectMany(kvp => kvp.Value).ToList();
-                using (var writer = new StreamWriter(EventsFilePath)) // Flatten the dictionary to a list of events
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<Event>));
-                    serializer.Serialize(writer, allEvents);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving events: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void PopulateInitialData()
-        {
-            //Data for examples 
-            AddEvent(new Event("Community movie Night", DateTime.Now.AddDays(5), "Community", "Join us for a movie night,eveyone is welcomed!"));
-            AddEvent(new Event("Local Art expo", DateTime.Now.AddDays(10), "Art", "Join us as local artist are showing casing their art ."));
-            AddEvent(new Event("Charity Run", DateTime.Now.AddDays(15), "Sports", "5K run to raise funds for local charities."));
-            AddEvent(new Event("Town meeting Meeting", DateTime.Now.AddDays(7), "Civic", "Discussing upcoming events or any matters."));
-        }
-
-        private void AddEvent(Event newEvent)
-        {
-            if (!eventsByDate.ContainsKey(newEvent.Date.Date))
-            {
-                eventsByDate[newEvent.Date.Date] = new List<Event>();// initalizes the dates if it's not present
-            }
-            eventsByDate[newEvent.Date.Date].Add(newEvent);//Allows for the adding of events to the specific dates 
-            categories.Add(newEvent.Category);//Adds the category to the specific set of the category 
-            upcomingEvents.Enqueue(newEvent);//Adds new events queue
-            priorityEvents.Enqueue(newEvent, newEvent.Date);//Adds to the queue depending on its date 
         }
 
         private void UpdateUI()
         {
-            CategoryComboBox.ItemsSource = categories;//sets the categories got the combo
+            CategoryComboBox.ItemsSource = categories.ToList();//sets the categories for the combo
             EventsListView.ItemsSource = eventsByDate.SelectMany(kvp => kvp.Value).OrderBy(e => e.Date).ToList();//Displays the events 
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            {//selects the cat and date 
+            {//selects the categories  and date 
                 var selectedCategory = CategoryComboBox.SelectedItem as string;
                 var selectedDate = EventDatePicker.SelectedDate;
 
                 var filteredEvents = eventsByDate
-                    .Where(kvp => (!selectedDate.HasValue || kvp.Key == selectedDate.Value.Date) &&
-                                  (string.IsNullOrEmpty(selectedCategory) || kvp.Value.Any(e => e.Category == selectedCategory)))
+                    .Where(kvp => (!selectedDate.HasValue || kvp.Key == selectedDate.Value.Date))
                     .SelectMany(kvp => kvp.Value)
+                    .Where(evt => string.IsNullOrEmpty(selectedCategory) || evt.Category == selectedCategory)
                     .OrderBy(e => e.Date)
                     .ToList();
 
@@ -155,6 +106,7 @@ namespace st10083869.prog7312.poe
                 MessageBox.Show($"Error during search: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         //Code attribution 
         //Author:Shiyu Wang 
         //www.youtube.com
@@ -213,12 +165,11 @@ namespace st10083869.prog7312.poe
 
             if (addEventWindow.ShowDialog() == true)
             {
-                AddEvent(addEventWindow.NewEvent);
-                SaveEvents();
+                AddNewEvent(addEventWindow.NewEvent); 
                 UpdateUI();
             }
 
-            //opens a new window
+            this.Show();
         }
 
         //Deleting of the event 
@@ -234,12 +185,16 @@ namespace st10083869.prog7312.poe
                 }
             }
             //The queue managers the events so it is calling it to be able to delete 
-            categories.Remove(eventToRemove.Category);
+            if (!eventsByDate.Values.SelectMany(list => list).Any(e => e.Category == eventToRemove.Category))
+            {
+                categories.Remove(eventToRemove.Category);
+            }
             upcomingEvents = new Queue<Event>(upcomingEvents.Where(e => e != eventToRemove));
             priorityEvents = new PriorityQueue<Event, DateTime>(
                 priorityEvents.UnorderedItems.Where(item => item.Element != eventToRemove)
                     .Select(item => (item.Element, item.Priority)));
         }
+
         // Allows the events to be edited 
         private void EditEventButton_Click(object sender, RoutedEventArgs e)
         {
@@ -253,8 +208,7 @@ namespace st10083869.prog7312.poe
                 if (editEventWindow.ShowDialog() == true)
                 {
                     RemoveEvent(selectedEvent);
-                    AddEvent(editEventWindow.NewEvent);
-                    SaveEvents();
+                    AddNewEvent(editEventWindow.NewEvent); 
                     UpdateUI();
                 }
 
@@ -262,7 +216,20 @@ namespace st10083869.prog7312.poe
             }
         }
 
-        //Delte button
+        private void AddNewEvent(Event newEvent)
+        {
+            if (!eventsByDate.TryGetValue(newEvent.Date.Date, out var eventsOnDate))
+            {
+                eventsOnDate = new List<Event>();
+                eventsByDate[newEvent.Date.Date] = eventsOnDate;
+            }
+            eventsOnDate.Add(newEvent);
+            categories.Add(newEvent.Category);
+            upcomingEvents.Enqueue(newEvent);
+            priorityEvents.Enqueue(newEvent, newEvent.Date);
+        }
+
+        //Delete button
         private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedEvent = ((Button)sender).DataContext as Event;
@@ -272,17 +239,13 @@ namespace st10083869.prog7312.poe
                 if (result == MessageBoxResult.Yes)
                 {
                     RemoveEvent(selectedEvent);
-                    SaveEvents();
                     UpdateUI();
                 }
             }
         }
 
-
-
         private void BackToMainButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveEvents();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
@@ -297,7 +260,7 @@ namespace st10083869.prog7312.poe
         public string Category { get; set; }
         public string Description { get; set; }
 
-        public Event() { } 
+        public Event() { }
 
         public Event(string title, DateTime date, string category, string description)
         {
