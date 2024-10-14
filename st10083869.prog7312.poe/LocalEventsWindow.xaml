@@ -20,30 +20,36 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <TextBlock Text="Local Events and Announcements" FontSize="24" FontWeight="Bold" Foreground="White" Margin="10" HorizontalAlignment="Center"/>
-
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
             <ComboBox x:Name="CategoryComboBox" Width="150" Margin="0,0,10,0" ToolTip="Select event category"/>
             <DatePicker x:Name="EventDatePicker" Width="150" Margin="0,0,10,0" ToolTip="Select event date"/>
             <Button Content="Search" Width="80" Click="SearchButton_Click" Background="#4CAF50" Foreground="White"/>
             <Button Content="Add Event" Width="80" Click="AddEventButton_Click" Margin="10,0,0,0" Background="#2196F3" Foreground="White"/>
         </StackPanel>
-
         <ListView x:Name="EventsListView" Grid.Row="2" Margin="10" Background="White" BorderBrush="#CCCCCC">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Date" Width="100" DisplayMemberBinding="{Binding Date, StringFormat=d}"/>
                     <GridViewColumn Header="Title" Width="200" DisplayMemberBinding="{Binding Title}"/>
                     <GridViewColumn Header="Category" Width="100" DisplayMemberBinding="{Binding Category}"/>
-                    <GridViewColumn Header="Description" Width="350" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Description" Width="250" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Actions" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Edit" Click="EditEventButton_Click" Margin="0,0,5,0" Background="#2196F3" Foreground="White"/>
+                                    <Button Content="Delete" Click="DeleteEventButton_Click" Background="#F44336" Foreground="White"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
             <Button Content="View Recommendations" Width="150" Margin="0,0,10,0" Click="ViewRecommendationsButton_Click" Background="#FF9800" Foreground="White"/>
             <Button Content="Back to Main Menu" Width="120" Click="BackToMainButton_Click" Background="#F44336" Foreground="White"/>
         </StackPanel>
-    </Grid>
+    </Grid>    
 </Window>

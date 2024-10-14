@@ -11,9 +11,7 @@ using System.Windows.Shapes;
 
 namespace st10083869.prog7312.poe
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -22,6 +20,7 @@ namespace st10083869.prog7312.poe
         }
 
         //linking of buttons 
+        //part2
         private void btnLocalEvents_Click(object sender, RoutedEventArgs e)
         {
             LocalEventsWindow localEventsWindow = new LocalEventsWindow();
@@ -29,6 +28,7 @@ namespace st10083869.prog7312.poe
             this.Hide();
         }
 
+        //part 2
         private void btnReportIssues_Click(object sender, RoutedEventArgs e)
         {
            ReportIssuesWindow reportIssuesWindow = new ReportIssuesWindow();
@@ -36,15 +36,26 @@ namespace st10083869.prog7312.poe
             this.Hide();
         }
 
+        //part 3
         private void btnServiceRequestStatus_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Service Request Status clicked");
         }
 
+        //part 1
         private void btnProvideFeedback_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Provide Feedback clicked");
+            ProvideFeedbackWindow provideFeedbackWindow = new ProvideFeedbackWindow();
+            provideFeedbackWindow.Show();
+            this.Hide();
         }
+        private void btnBackToMain_Click(object sender, RoutedEventArgs e)
+{
+    // Logic to return to main menu
+    MainWindow mainWindow = new MainWindow();
+    mainWindow.Show();
+    this.Close();
+}
     }
 }
       

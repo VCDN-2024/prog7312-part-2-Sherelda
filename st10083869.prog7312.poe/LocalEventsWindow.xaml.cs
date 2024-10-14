@@ -20,9 +20,6 @@ namespace st10083869.prog7312.poe
     //prog7312 part2 
 
 
-    /// <summary>
-    /// Interaction logic for LocalEventsWindow.xaml
-    /// </summary>
     public partial class LocalEventsWindow : Window
     {   //Data structures are implemented to manage the events by history,dates,category 
        //stores the evnts by the dates 
@@ -223,6 +220,65 @@ namespace st10083869.prog7312.poe
 
             //opens a new window
         }
+
+        //Deleting of the event 
+        private void RemoveEvent(Event eventToRemove)
+        {
+            if (eventsByDate.ContainsKey(eventToRemove.Date.Date))
+            {
+                var dateEvents = eventsByDate[eventToRemove.Date.Date];
+                dateEvents.Remove(eventToRemove);
+                if (dateEvents.Count == 0)
+                {
+                    eventsByDate.Remove(eventToRemove.Date.Date);
+                }
+            }
+            //The queue managers the events so it is calling it to be able to delete 
+            categories.Remove(eventToRemove.Category);
+            upcomingEvents = new Queue<Event>(upcomingEvents.Where(e => e != eventToRemove));
+            priorityEvents = new PriorityQueue<Event, DateTime>(
+                priorityEvents.UnorderedItems.Where(item => item.Element != eventToRemove)
+                    .Select(item => (item.Element, item.Priority)));
+        }
+        // Allows the events to be edited 
+        private void EditEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedEvent = ((Button)sender).DataContext as Event;
+            if (selectedEvent != null)
+            {
+                var editEventWindow = new AddEventWindow(selectedEvent);
+                editEventWindow.Owner = this;
+                this.Hide();
+
+                if (editEventWindow.ShowDialog() == true)
+                {
+                    RemoveEvent(selectedEvent);
+                    AddEvent(editEventWindow.NewEvent);
+                    SaveEvents();
+                    UpdateUI();
+                }
+
+                this.Show();
+            }
+        }
+
+        //Delte button
+        private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedEvent = ((Button)sender).DataContext as Event;
+            if (selectedEvent != null)
+            {
+                var result = MessageBox.Show($"Are you sure you want to delete the event '{selectedEvent.Title}'?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    RemoveEvent(selectedEvent);
+                    SaveEvents();
+                    UpdateUI();
+                }
+            }
+        }
+
+
 
         private void BackToMainButton_Click(object sender, RoutedEventArgs e)
         {

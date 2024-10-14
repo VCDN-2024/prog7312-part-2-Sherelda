@@ -18,12 +18,11 @@ namespace st10083869.prog7312.poe
     //Author st10083869
     //prog7312 part2 
 
-    /// <summary>
-    /// </summary>
     public partial class AddEventWindow : Window
     {
         //Gets and sets used to gather and store data 
         public Event NewEvent { get; private set; }
+        private Event EventToEdit { get; set; }
 
         public AddEventWindow()
         {
@@ -56,6 +55,25 @@ namespace st10083869.prog7312.poe
             DialogResult = true;
             Close();
         }
+
+        public AddEventWindow(Event eventToEdit) : this()
+        {
+            EventToEdit = eventToEdit;
+            PopulateFields();
+            this.Title = "Edit Event";
+        }
+
+        private void PopulateFields()
+        {
+            if (EventToEdit != null)
+            {
+                TitleTextBox.Text = EventToEdit.Title;
+                EventDatePicker.SelectedDate = EventToEdit.Date;
+                CategoryTextBox.Text = EventToEdit.Category;
+                DescriptionTextBox.Text = EventToEdit.Description;
+            }
+        }
+
 
         //cancel button used to cancel the add event .it will go back to the previous window
         private void CancelButton_Click(object sender, RoutedEventArgs e)

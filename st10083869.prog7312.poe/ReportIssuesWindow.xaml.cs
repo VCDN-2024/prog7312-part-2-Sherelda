@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace st10083869.prog7312.poe
 {
-    /// <summary>
-    /// Interaction logic for ReportIssuesWindow.xaml
-    /// </summary>
+   
     public partial class ReportIssuesWindow : Window
  
         {
@@ -30,6 +28,7 @@ namespace st10083869.prog7312.poe
             InitializeComponent();
         }
 
+        //Used to attch image 
         private void btnAttach_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
