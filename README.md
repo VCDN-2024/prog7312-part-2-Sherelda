@@ -53,6 +53,7 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 
 ### Local Events and Announcements
 
+![Screenshot (155)](https://github.com/user-attachments/assets/e6c54484-c1b6-4e98-a3a3-5d3072f696fc)
 - Browse through a list of local events.
 - Use the search feature to filter events by category or date.
 - Add new events or edit and delete existing ones.
@@ -60,12 +61,16 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 
 ### Report Issues
 
+![Screenshot (156)](https://github.com/user-attachments/assets/d4d7eae2-e1cb-444f-956d-fc2a667127df)
 - Complete the form with the issue's location, category, and description.
 - Optionally, attach an image file to support your report.
 - Submit the issue by clicking the "Submit" button.
+![Screenshot (157)](https://github.com/user-attachments/assets/b4e01868-d6d9-45bb-b8f1-fccb7594f14d)
+
 
 ### Provide Feedback
 
+![Screenshot (159)](https://github.com/user-attachments/assets/69cb1498-92f3-4e69-8dd2-aef110b5a8ec)
 - Fill in your details along with your comments and suggestions.
 - Use "Send" to submit the feedback or "Clear" to reset the form.
 
