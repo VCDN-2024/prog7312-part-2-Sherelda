@@ -4,6 +4,7 @@
 
 This Windows Presentation Foundation (WPF) application is developed to enhance community engagement and manage local events effectively. It provides a user-friendly platform for users to interact with local events, report issues, and share feedback with community organizers.
 
+**Demo video link** https://youtu.be/jV8JBcFTsNw?feature=shared
 ## Key Features
 
 1. **Main Menu**
