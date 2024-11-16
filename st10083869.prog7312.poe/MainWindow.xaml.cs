@@ -39,7 +39,9 @@ namespace st10083869.prog7312.poe
         //part 3
         private void btnServiceRequestStatus_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Service Request Status clicked");
+            ServiceRequestStatusWindow serviceRequestStatusWindow = new ServiceRequestStatusWindow();
+            serviceRequestStatusWindow.Show();
+            this.Hide();
         }
 
         //part 1
