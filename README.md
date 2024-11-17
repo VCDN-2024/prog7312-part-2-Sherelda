@@ -32,7 +32,7 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
    - Feedback is stored for future analysis.
 
 5. **Service Request Status**
--Advanced request tracking and management system
+- Advanced request tracking and management system
 - Implements multiple data structures for efficient handling:
 **1** Red-Black Tree for balanced search operations
 **2** Min Heap for priority-based request handling
