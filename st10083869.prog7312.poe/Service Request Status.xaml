@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:st10083869.prog7312.poe"
         mc:Ignorable="d"
-        Title="Service Request Status" Height="700" Width="1000"
+        Title="Service Request Management System" 
+        Height="900" 
+        Width="1200"
         WindowStartupLocation="CenterScreen">
 
     <Window.Background>
@@ -20,12 +22,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="250"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Text="Service Request Status" 
-                 FontSize="24" 
+        <TextBlock Text="Service Request Management System" 
+                 FontSize="28" 
                  FontWeight="Bold" 
                  Foreground="White" 
                  HorizontalAlignment="Center" 
@@ -37,95 +40,157 @@
             <DockPanel Margin="0,0,0,10">
                 <TextBox x:Name="txtSearch" 
                         Width="200" 
-                        Height="30"
+                        Height="35"
                         VerticalContentAlignment="Center"
                         Margin="0,0,10,0"
-                        Background="White"/>
-                <ComboBox x:Name="cmbDataStructure"
+                        Background="White"
+                        FontSize="14"
+                        Padding="5,0">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <Grid>
+                                                        <TextBlock Text="Enter search term..." 
+                                                                 Foreground="Gray" 
+                                                                 Margin="5,8,0,0"
+                                                                 Visibility="Visible"/>
+                                                        <ScrollViewer x:Name="PART_ContentHost" 
+                                                                    Margin="5,0,0,0" 
+                                                                    VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <ComboBox x:Name="cmbSearchBy"
                          Width="150"
-                         Height="30"
+                         Height="35"
                          Margin="0,0,10,0"
-                         Background="White">
-                    <ComboBoxItem Content="Binary Search Tree"/>
-                    <ComboBoxItem Content="AVL Tree"/>
-                    <ComboBoxItem Content="Red-Black Tree"/>
-                    <ComboBoxItem Content="Priority Heap"/>
+                         Background="White"
+                         FontSize="14"
+                         VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="Search by ID"/>
+                    <ComboBoxItem Content="Search by Description"/>
+                    <ComboBoxItem Content="Search by Status"/>
+                    <ComboBoxItem Content="Search by Priority"/>
+                    <ComboBoxItem Content="Search by Location"/>
                 </ComboBox>
+
                 <Button Content="Search" 
-                        Width="80"
-                        Height="30"
+                        Width="100"
+                        Height="35"
                         Click="SearchButton_Click"
                         Background="#4CAF50"
                         Foreground="White"
+                        FontSize="14"
                         Margin="0,0,10,0"/>
-                <Button Content="View Structure" 
+
+                <Button Content="Clear Search" 
                         Width="120"
-                        Height="30"
-                        Click="ViewStructureButton_Click"
+                        Height="35"
+                        Click="ClearSearchButton_Click"
                         Background="#2196F3"
-                        Foreground="White"/>
+                        Foreground="White"
+                        FontSize="14"/>
             </DockPanel>
         </StackPanel>
 
-        <!-- Main Content -->
+        <!-- Main Content Grid -->
         <Grid Grid.Row="2" Margin="0,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Request List -->
-            <ListView x:Name="lvRequests" Background="White">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="ID" Width="80" 
-                                      DisplayMemberBinding="{Binding Id}"/>
-                        <GridViewColumn Header="Description" Width="200" 
-                                      DisplayMemberBinding="{Binding Description}"/>
-                        <GridViewColumn Header="Status" Width="100" 
-                                      DisplayMemberBinding="{Binding Status}"/>
-                        <GridViewColumn Header="Priority" Width="80" 
-                                      DisplayMemberBinding="{Binding Priority}"/>
-                        <GridViewColumn Header="Location" Width="120" 
-                                      DisplayMemberBinding="{Binding Location}"/>
-                        <GridViewColumn Header="Date" Width="120" 
-                                      DisplayMemberBinding="{Binding DateSubmitted, StringFormat=d}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-            <!-- Visualization Panel -->
-            <TreeView x:Name="tvVisualization" 
-                     Grid.Column="1"
-                     Margin="10,0,0,0"
-                     Background="White"/>
+            <Border Background="White" CornerRadius="5">
+                <ListView x:Name="lvRequests" 
+                         BorderThickness="0"
+                         Background="Transparent">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="60" 
+                                          DisplayMemberBinding="{Binding RequestId}"/>
+                            <GridViewColumn Header="Description" Width="300" 
+                                          DisplayMemberBinding="{Binding RequestDescription}"/>
+                            <GridViewColumn Header="Status" Width="100" 
+                                          DisplayMemberBinding="{Binding RequestStatus}"/>
+                            <GridViewColumn Header="Priority" Width="70" 
+                                          DisplayMemberBinding="{Binding RequestPriority}"/>
+                            <GridViewColumn Header="Location" Width="150" 
+                                          DisplayMemberBinding="{Binding RequestLocation}"/>
+                            <GridViewColumn Header="Date" Width="100" 
+                                          DisplayMemberBinding="{Binding RequestDate, StringFormat=d}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
         </Grid>
 
+        <!-- Chart Section -->
+        <Border Grid.Row="3" 
+                Background="White" 
+                CornerRadius="5" 
+                Margin="0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Service Requests by Status"
+                          FontSize="16"
+                          FontWeight="Bold"
+                          Margin="10,5"/>
+
+                <Canvas x:Name="graphCanvas" 
+                        Grid.Row="1"
+                        Margin="40,10,10,30"/>
+            </Grid>
+        </Border>
+
         <!-- Bottom Buttons -->
-        <StackPanel Grid.Row="3" 
+        <StackPanel Grid.Row="4" 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right" 
                     Margin="0,10,0,0">
-            <Button Content="View Priority Queue" 
-                    Width="120" 
-                    Height="30"
+            <Button Content="Sort by Priority" 
+                    Width="150" 
+                    Height="35"
                     Margin="0,0,10,0"
-                    Click="ViewPriorityQueueButton_Click"
+                    Click="SortByPriorityButton_Click"
                     Background="#FF9800"
-                    Foreground="White"/>
-            <Button Content="View Service Areas" 
-                    Width="120" 
-                    Height="30"
+                    Foreground="White"
+                    FontSize="14"/>
+
+            <Button Content="Sort by Date" 
+                    Width="150" 
+                    Height="35"
                     Margin="0,0,10,0"
-                    Click="ViewServiceAreasButton_Click"
+                    Click="SortByDateButton_Click"
                     Background="#9C27B0"
-                    Foreground="White"/>
+                    Foreground="White"
+                    FontSize="14"/>
+
             <Button Content="Back to Main Menu" 
-                    Width="120" 
-                    Height="30"
+                    Width="150" 
+                    Height="35"
                     Click="BackToMainButton_Click"
                     Background="#F44336"
-                    Foreground="White"/>
+                    Foreground="White"
+                    FontSize="14"/>
         </StackPanel>
     </Grid>
 </Window>
