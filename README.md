@@ -31,8 +31,14 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
    - Users can send feedback, comments, and suggestions.
    - Feedback is stored for future analysis.
 
-5. **Service Request Status** (Future Feature)
-   - Placeholder for a future feature to track service request statuses.
+5. **Service Request Status**
+-Advanced request tracking and management system
+- Implements multiple data structures for efficient handling:
+**1** Red-Black Tree for balanced search operations
+**2** Min Heap for priority-based request handling
+**3** Graph implementation for service area management
+- Features sophisticated search and sort capabilities
+- Visual representation of service request statistics
 
 ## Installation Instructions
 
@@ -84,11 +90,61 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 - `AddEventWindow.xaml` & `AddEventWindow.xaml.cs`: Interface for adding/editing events.
 - `Event.cs`: Class definition for event objects.
 
-## Technical Details
+## Technical Details 
 
 - User interface is created with XAML, and backend logic is in C#.
 - The project demonstrates the use of C# data structures and LINQ for optimized data handling.
 - UI design follows a consistent color theme with gradient backgrounds.
+- Backend implemented in C# with advanced data structures.
+-XAML-based UI design
+-Custom data structure implementations
+-Object-oriented design patterns
+-Efficient algorithms for data management
+-Responsive user interface with gradient themes
+-LINQ integration for data operations
+
+## Technical Implemetations 
+
+ **Data Structures:**
+- **1**Graph Implementation (Graph.cs)
+- Generic implementation supporting various data types
+  Features:
+- Adjacency list representation
+- Depth-First Search (DFS) traversal
+- Minimum Spanning Tree algorithm
+- Weighted edge support
+- Bidirectional edge handling
+
+-**2**Min Heap (MinHeap.cs)
+-Generic implementation with IComparable constraint Capabilities:
+-Efficient priority-based extraction
+-Dynamic element insertion
+-property maintenance
+-Complete binary tree structure
+
+**3**Red-Black Tree (RedBlackTree.cs)
+-Self-balancing binary search tree
+-Features:
+-Color-based balancing (Red/Black nodes)
+-Automatic rebalancing on insertion
+-In-order traversal support
+-Duplicate value handling
+
+**4**Service Request Management Interface
+-Search Functionality
+-Multiple search criteria support (ID, Description, Status, Priority, Location)
+-Real-time search results
+-Clear search capability
+
+**5**Request Visualization
+-GridView-based request listing
+-Status-based graphical representation
+-Priority-based sorting
+-Interface Features
+-Responsive grid layout
+-Visual feedback for user actions
+-Efficient data presentation
+-Advanced filtering capabilities
 
 ## Author
 
