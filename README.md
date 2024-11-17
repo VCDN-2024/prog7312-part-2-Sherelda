@@ -81,6 +81,18 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 - Fill in your details along with your comments and suggestions.
 - Use "Send" to submit the feedback or "Clear" to reset the form.
 
+  ## Service Request Status 
+
+  ## Data Structures:
+1. **Graph Implementation (Graph.cs)**
+- Used to manage the service areas and their relationships. Allows for the representation of service areas, modeling of relationships, traversal algorithms, and computation of the Minimum Spanning Tree (MST).
+
+3. **Min Heap (MinHeap.cs)**
+- Used for priority-based handling of service requests. Enables efficient priority-based extraction, dynamic insertion, constant-time access to minimum, and efficient heapify operations.
+
+3. **Red-Black Tree (RedBlackTree.cs)**
+ - Used to efficiently manage and search for service requests. Provides a balanced structure, fast searching, duplicate handling, and in-order traversal support.
+
 ## Project Files
 
 - `MainWindow.xaml` & `MainWindow.xaml.cs`: Main window and navigation.
@@ -88,7 +100,11 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 - `ReportIssuesWindow.xaml` & `ReportIssuesWindow.xaml.cs`: Interface for reporting issues.
 - `ProvideFeedbackWindow.xaml` & `ProvideFeedbackWindow.xaml.cs`: Feedback submission interface.
 - `AddEventWindow.xaml` & `AddEventWindow.xaml.cs`: Interface for adding/editing events.
+- `ServiceRequestStatus.Xaml`& `ServiceRequestStatus.Xaml`:Service request ststus interface
 - `Event.cs`: Class definition for event objects.
+- `Graph.cs`: Implementation of the Graph data structure.
+- `MinHeap.cs`: Implementation of the Min Heap data structure.
+- `RedBlackTree.cs`: Implementation of the Red-Black Tree data structure.
 
 ## Technical Details 
 
@@ -103,48 +119,22 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 -Responsive user interface with gradient themes
 -LINQ integration for data operations
 
-## Technical Implemetations 
+## Techincal implementation: 
+1.**Service Request Management Interface**
+ - Search Functionality:
+- Multiple search criteria support (ID, Description, Status, Priority, Location)
+- Real-time search results
+- Clear search capability
 
- **Data Structures:**
-- **1**Graph Implementation (Graph.cs)
-- Generic implementation supporting various data types
-  Features:
-- Adjacency list representation
-- Depth-First Search (DFS) traversal
-- Minimum Spanning Tree algorithm
-- Weighted edge support
-- Bidirectional edge handling
-
--**2**Min Heap (MinHeap.cs)
--Generic implementation with IComparable constraint Capabilities:
--Efficient priority-based extraction
--Dynamic element insertion
--property maintenance
--Complete binary tree structure
-
-**3**Red-Black Tree (RedBlackTree.cs)
--Self-balancing binary search tree
--Features:
--Color-based balancing (Red/Black nodes)
--Automatic rebalancing on insertion
--In-order traversal support
--Duplicate value handling
-
-**4**Service Request Management Interface
--Search Functionality
--Multiple search criteria support (ID, Description, Status, Priority, Location)
--Real-time search results
--Clear search capability
-
-**5**Request Visualization
--GridView-based request listing
--Status-based graphical representation
--Priority-based sorting
--Interface Features
--Responsive grid layout
--Visual feedback for user actions
--Efficient data presentation
--Advanced filtering capabilities
+2.**Request Visualization**
+- GridView-based request listing
+- Status-based graphical representation
+- Priority-based sorting
+- Interface Features
+- Responsive grid layout
+- Visual feedback for user actions
+- Efficient data presentation
+- Advanced filtering capabilities
 
 ## Author
 
