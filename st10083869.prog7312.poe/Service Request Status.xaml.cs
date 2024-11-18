@@ -13,6 +13,7 @@ namespace st10083869.prog7312.poe
     {
         private class ServiceRequest
         {
+            //Gets ans sets used to gather ans store data 
             public int RequestId { get; set; }
             public string RequestDescription { get; set; }
             public string RequestStatus { get; set; }
@@ -212,6 +213,7 @@ namespace st10083869.prog7312.poe
                 return max;
             }
 
+            //ensures for the max heap
             private void HeapifyDown(int i)
             {
                 int maxIndex = i;
@@ -261,6 +263,7 @@ namespace st10083869.prog7312.poe
         {
             var requests = new List<ServiceRequest>
             {
+                //data
                 new ServiceRequest(1, "Home affairs system updates", "Critical", 5, "All areas", DateTime.Now.AddDays(-2)),
                 new ServiceRequest(2, "Trash bag's delivery ", "Pending", 3, "Suburban Area", DateTime.Now.AddDays(-5)),
                 new ServiceRequest(3, "Fix potholes", "In Progress", 2, "Residential", DateTime.Now.AddDays(-3)),
@@ -515,6 +518,7 @@ namespace st10083869.prog7312.poe
             }
         }
 
+        //colours for graph
         private Brush GetBarColor(int index)
         {
             var colors = new Brush[]

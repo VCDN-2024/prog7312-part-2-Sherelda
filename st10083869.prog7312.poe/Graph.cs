@@ -7,15 +7,21 @@ using System.Windows.Documents;
 
 namespace st10083869.prog7312.poe
 {
+    //Graph claa undirected weighted graph
     public class Graph<T>
     {
         private Dictionary<T, List<Tuple<T, int>>> adjacencyList;
 
         public Graph()
         {
+            //List representation for graph
             adjacencyList = new Dictionary<T, List<Tuple<T, int>>>();
         }
 
+        //Code attribution 
+        //Author:AZUL.CODING
+        //www.youtube.com
+        //Link:https://youtu.be/x41moxR2BNg?si=NnReE4uC9r-xaO7_
         public void AddVertex(T vertex)
         {
             if (!adjacencyList.ContainsKey(vertex))
@@ -24,6 +30,7 @@ namespace st10083869.prog7312.poe
             }
         }
 
+        //method to add undirective edge
         public void AddEdge(T source, T destination, int weight)
         {
             if (!adjacencyList.ContainsKey(source))
@@ -34,6 +41,7 @@ namespace st10083869.prog7312.poe
             adjacencyList[destination].Add(new Tuple<T, int>(source, weight));
         }
 
+        //return list
         public List<T> DepthFirstSearch(T startVertex)
         {
             var visited = new HashSet<T>();
@@ -55,6 +63,7 @@ namespace st10083869.prog7312.poe
             }
         }
 
+        //method to return 
         public List<Tuple<T, T, int>> MinimumSpanningTree()
         {
             var result = new List<Tuple<T, T, int>>();
@@ -66,6 +75,7 @@ namespace st10083869.prog7312.poe
             var priorityQueue = new List<Tuple<T, T, int>>();
             foreach (var neighbor in adjacencyList[allVertices[0]])
             {
+                //vertex priortyque 
                 priorityQueue.Add(new Tuple<T, T, int>(allVertices[0], neighbor.Item1, neighbor.Item2));
             }
             while (priorityQueue.Count > 0 && visited.Count < allVertices.Count)

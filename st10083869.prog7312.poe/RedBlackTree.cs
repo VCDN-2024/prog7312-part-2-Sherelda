@@ -8,14 +8,17 @@ namespace st10083869.prog7312.poe
 {
     public class RedBlackTree<T> where T : IComparable<T>
     {
+        //represents colour
         private enum Color { RED, BLACK }
 
+        //represents the redblack tree
         private class Node
         {
             public T Data;
             public Node Left, Right, Parent;
             public Color Color;
 
+            //constructor
             public Node(T data)
             {
                 Data = data;
@@ -35,6 +38,7 @@ namespace st10083869.prog7312.poe
                 root.Color = Color.BLACK;
                 return;
             }
+            //start from root
 
             Node current = root;
             Node parent = null;
@@ -47,7 +51,7 @@ namespace st10083869.prog7312.poe
                 else if (data.CompareTo(current.Data) > 0)
                     current = current.Right;
                 else
-                    return; // Duplicate value, do not insert
+                    return; 
             }
 
             newNode.Parent = parent;
@@ -59,6 +63,7 @@ namespace st10083869.prog7312.poe
             FixViolation(newNode);
         }
 
+        //fixs violation errors
         private void FixViolation(Node node)
         {
             while (node != root && node.Parent != null && node.Parent.Color == Color.RED)
@@ -107,6 +112,7 @@ namespace st10083869.prog7312.poe
                     }
                     else
                     {
+                        //swopes colours in between
                         if (node == parent.Left)
                         {
                             RotateRight(parent);
@@ -124,6 +130,7 @@ namespace st10083869.prog7312.poe
             root.Color = Color.BLACK;
         }
 
+        //method for rotation
         private void RotateLeft(Node node)
         {
             Node rightChild = node.Right;
