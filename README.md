@@ -72,7 +72,8 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 - Complete the form with the issue's location, category, and description.
 - Optionally, attach an image file to support your report.
 - Submit the issue by clicking the "Submit" button.
-![Screenshot (157)](https://github.com/user-attachments/assets/b4e01868-d6d9-45bb-b8f1-fccb7594f14d)
+![Screenshot (22)](https://github.com/user-attachments/assets/c695eda3-0b28-43c8-9222-d659ab2db10e)
+
 
 
 ### Provide Feedback
