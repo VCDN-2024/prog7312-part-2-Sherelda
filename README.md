@@ -31,8 +31,14 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
    - Users can send feedback, comments, and suggestions.
    - Feedback is stored for future analysis.
 
-5. **Service Request Status** (Future Feature)
-   - Placeholder for a future feature to track service request statuses.
+5. **Service Request Status**
+- Advanced request tracking and management system
+- Implements multiple data structures for efficient handling:
+**1** Red-Black Tree for balanced search operations
+**2** Min Heap for priority-based request handling
+**3** Graph implementation for service area management
+- Features sophisticated search and sort capabilities
+- Visual representation of service request statistics
 
 ## Installation Instructions
 
@@ -75,6 +81,18 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 - Fill in your details along with your comments and suggestions.
 - Use "Send" to submit the feedback or "Clear" to reset the form.
 
+  ## Service Request Status 
+
+  ## Data Structures:
+1. **Graph Implementation (Graph.cs)**
+- Used to manage the service areas and their relationships. Allows for the representation of service areas, modeling of relationships, traversal algorithms, and computation of the Minimum Spanning Tree (MST).
+
+3. **Min Heap (MinHeap.cs)**
+- Used for priority-based handling of service requests. Enables efficient priority-based extraction, dynamic insertion, constant-time access to minimum, and efficient heapify operations.
+
+3. **Red-Black Tree (RedBlackTree.cs)**
+ - Used to efficiently manage and search for service requests. Provides a balanced structure, fast searching, duplicate handling, and in-order traversal support.
+
 ## Project Files
 
 - `MainWindow.xaml` & `MainWindow.xaml.cs`: Main window and navigation.
@@ -82,13 +100,41 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 - `ReportIssuesWindow.xaml` & `ReportIssuesWindow.xaml.cs`: Interface for reporting issues.
 - `ProvideFeedbackWindow.xaml` & `ProvideFeedbackWindow.xaml.cs`: Feedback submission interface.
 - `AddEventWindow.xaml` & `AddEventWindow.xaml.cs`: Interface for adding/editing events.
+- `ServiceRequestStatus.Xaml`& `ServiceRequestStatus.Xaml`:Service request ststus interface
 - `Event.cs`: Class definition for event objects.
+- `Graph.cs`: Implementation of the Graph data structure.
+- `MinHeap.cs`: Implementation of the Min Heap data structure.
+- `RedBlackTree.cs`: Implementation of the Red-Black Tree data structure.
 
-## Technical Details
+## Technical Details 
 
 - User interface is created with XAML, and backend logic is in C#.
 - The project demonstrates the use of C# data structures and LINQ for optimized data handling.
 - UI design follows a consistent color theme with gradient backgrounds.
+- Backend implemented in C# with advanced data structures.
+-XAML-based UI design
+-Custom data structure implementations
+-Object-oriented design patterns
+-Efficient algorithms for data management
+-Responsive user interface with gradient themes
+-LINQ integration for data operations
+
+## Techincal implementation: 
+1.**Service Request Management Interface**
+ - Search Functionality:
+- Multiple search criteria support (ID, Description, Status, Priority, Location)
+- Real-time search results
+- Clear search capability
+
+2.**Request Visualization**
+- GridView-based request listing
+- Status-based graphical representation
+- Priority-based sorting
+- Interface Features
+- Responsive grid layout
+- Visual feedback for user actions
+- Efficient data presentation
+- Advanced filtering capabilities
 
 ## Author
 
