@@ -87,8 +87,14 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 1. **Graph Implementation (Graph.cs)**
 - Used to manage the service areas and their relationships. Allows for the representation of service areas, modeling of relationships, traversal algorithms, and computation of the Minimum Spanning Tree (MST).
 
+2. **AVL trees**
+- Used for storing and retriving requests
+
 3. **Min Heap (MinHeap.cs)**
 - Used for priority-based handling of service requests. Enables efficient priority-based extraction, dynamic insertion, constant-time access to minimum, and efficient heapify operations.
+
+4.**Diictory**
+-Used for the hard coded data 
 
 3. **Red-Black Tree (RedBlackTree.cs)**
  - Used to efficiently manage and search for service requests. Provides a balanced structure, fast searching, duplicate handling, and in-order traversal support.
