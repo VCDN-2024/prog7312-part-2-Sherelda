@@ -51,7 +51,7 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 ## User Guide
 
 ### Main Menu
-
+![Screenshot (155)](https://github.com/user-attachments/assets/e6c54484-c1b6-4e98-a3a3-5d3072f696fc)
 - On launching the app, the main menu provides navigation options:
   - Local Events and Announcements
   - Report Issues
@@ -60,7 +60,7 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 
 ### Local Events and Announcements
 
-![Screenshot (155)](https://github.com/user-attachments/assets/e6c54484-c1b6-4e98-a3a3-5d3072f696fc)
+![Screenshot (156)](https://github.com/user-attachments/assets/d4d7eae2-e1cb-444f-956d-fc2a667127df)
 - Browse through a list of local events.
 - Use the search feature to filter events by category or date.
 - Add new events or edit and delete existing ones.
@@ -68,13 +68,10 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 
 ### Report Issues
 
-![Screenshot (156)](https://github.com/user-attachments/assets/d4d7eae2-e1cb-444f-956d-fc2a667127df)
+![Screenshot (22)](https://github.com/user-attachments/assets/c695eda3-0b28-43c8-9222-d659ab2db10e)
 - Complete the form with the issue's location, category, and description.
 - Optionally, attach an image file to support your report.
 - Submit the issue by clicking the "Submit" button.
-![Screenshot (22)](https://github.com/user-attachments/assets/c695eda3-0b28-43c8-9222-d659ab2db10e)
-
-
 
 ### Provide Feedback
 
@@ -83,6 +80,8 @@ This Windows Presentation Foundation (WPF) application is developed to enhance c
 - Use "Send" to submit the feedback or "Clear" to reset the form.
 
   ## Service Request Status 
+![Screenshot (160)](https://github.com/user-attachments/assets/2b09b899-d1fc-41fe-a2d3-506d8de5f840)
+-Users will be able to search according to the users ID,descrption,Priortyand area and the graph will show the status of request.
 
   ## Data Structures:
 1. **Graph Implementation (Graph.cs)**
